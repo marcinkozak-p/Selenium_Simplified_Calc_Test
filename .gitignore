@@ -1,0 +1,13 @@
+# Maven
+target/
+
+# Intellij
+.idea/
+out/
+*.iml
+*.log
+
+# Java
+*.jar
+*.zip
+*.gz
