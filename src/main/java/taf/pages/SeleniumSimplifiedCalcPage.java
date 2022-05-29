@@ -4,47 +4,53 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+import taf.Operator;
 
 public class SeleniumSimplifiedCalcPage {
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[@id=\"number1\"]")
     private WebElement inputFirst;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[@id=\"number2\"]")
     private WebElement inputSecond;
 
-    @FindBy(xpath = "")
-    private WebElement operationsDropdownList;
+    @FindBy(xpath = "//*[@id=\"function\"]")
+    private WebElement operationsDropdownListWebElement;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[@id=\"answer\"]")
     private WebElement operationResult;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//*[@id=\"calculate\"]")
     private WebElement calculateButton;
 
-    public SeleniumSimplifiedCalcPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
-        driver.get("https://testpages.herokuapp.com/calculate.php");
+    private Select operationsDropdownList;
+
+    public SeleniumSimplifiedCalcPage(WebDriver driver, String pageURL) {
+        PageFactory.initElements(driver, this);
+        driver.get(pageURL);
+        operationsDropdownList = new Select(operationsDropdownListWebElement);
     }
 
-    public void clearInputs(){
+    public void setInputFirst(String input) {
         inputFirst.clear();
-        inputSecond.clear();
-    }
-
-    public void calculate(){
-        calculateButton.click();
-    }
-
-    public void setInputFirst(String input){
         inputFirst.sendKeys(input);
     }
 
-    public void setInputSecond(String input){
+    public void setInputSecond(String input) {
+        inputSecond.clear();
         inputSecond.sendKeys(input);
     }
 
-    public String getCalculationResult(){
+    public void selectOperation(Operator operator) {
+        operationsDropdownList.selectByValue(operator.getAction());
+    }
+
+    public void selectCalculate() {
+        calculateButton.click();
+    }
+
+    public String getCalculationResult() {
         return operationResult.getText();
     }
 
