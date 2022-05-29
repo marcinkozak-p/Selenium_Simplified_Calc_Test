@@ -39,9 +39,9 @@ public class SeleniumSimplifiedCalculatorUITest {
         simplifiedCalcPage.setInputSecond(secondInput);
     }
 
-    @When("User selects addition")
-    public void user_selects_addition() {
-        simplifiedCalcPage.selectOperation(Operator.PLUS);
+    @When("User selects {} in operations list")
+    public void user_selects_operation(String operation) {
+        simplifiedCalcPage.selectOperation(Operator.getOperation(operation));
     }
 
     @When("User clicks Calculate")
