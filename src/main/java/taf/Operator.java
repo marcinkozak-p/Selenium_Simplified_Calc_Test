@@ -1,5 +1,7 @@
 package taf;
 
+import taf.pages.LogUtils;
+
 public enum Operator {
     PLUS("plus"),
     TIMES("times"),
@@ -22,6 +24,7 @@ public enum Operator {
                 return e;
             }
         }
+        LogUtils.error("Unsupported operation error: " + operation);
         throw new IllegalArgumentException("Described operation is not supported");
     }
 }

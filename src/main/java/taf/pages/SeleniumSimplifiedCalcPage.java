@@ -30,27 +30,33 @@ public class SeleniumSimplifiedCalcPage {
         PageFactory.initElements(driver, this);
         driver.get(pageURL);
         operationsDropdownList = new Select(operationsDropdownListWebElement);
+        LogUtils.info("Opened calculator page at: " + pageURL);
     }
 
     public void setInputFirst(String input) {
+        LogUtils.info("Setting first input: " + input);
         inputFirst.clear();
         inputFirst.sendKeys(input);
     }
 
     public void setInputSecond(String input) {
+        LogUtils.info("Setting second input: " + input);
         inputSecond.clear();
         inputSecond.sendKeys(input);
     }
 
     public void selectOperation(Operator operator) {
+        LogUtils.info("Selecting operation: " + operator);
         operationsDropdownList.selectByValue(operator.getAction());
     }
 
     public void selectCalculate() {
+        LogUtils.info("Calculate button selected");
         calculateButton.click();
     }
 
     public String getCalculationResult() {
+        LogUtils.info("Calculated result: " + operationResult.getText() +"\n");
         return operationResult.getText();
     }
 

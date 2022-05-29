@@ -1,7 +1,9 @@
-Feature: Addition
+Feature: Simple calculator operations on two numbers
+
+  Background:
+    Given User is on https://testpages.herokuapp.com/calculate.php page
 
   Scenario Outline: Add two numbers
-    Given User is on https://testpages.herokuapp.com/calculate.php page
     When User inputs <first input> to first input
     And User inputs <second input> to second input
     And User selects plus in operations list
@@ -13,9 +15,13 @@ Feature: Addition
       | 1           | 2            | 3      |
       | 3           | 4            | 7      |
       | 5           | 6            | 11     |
+      |             | 2            | ERR    |
+      | 689         |              | ERR    |
+      | 5           | 6            | 11     |
+      | one         | 2            | ERR    |
+      | 1           | two          | ERR    |
 
   Scenario Outline: Subtract two numbers
-    Given User is on https://testpages.herokuapp.com/calculate.php page
     When User inputs <first input> to first input
     And User inputs <second input> to second input
     And User selects minus in operations list
@@ -25,5 +31,54 @@ Feature: Addition
     Examples:
       | first input | second input | answer |
       | 1           | 2            | -1     |
-      | 3           | 4            | -1     |
-      | 5           | 6            | -1     |
+      | 13          | 4            | 9      |
+      | 0           | 0            | 0      |
+      | -1          | -1           | 0      |
+      |             | 2            | ERR    |
+      | 689         |              | ERR    |
+      | one         | 2            | ERR    |
+      | 1           | two          | ERR    |
+
+
+  Scenario Outline: Multiply two numbers
+    When User inputs <first input> to first input
+    And User inputs <second input> to second input
+    And User selects times in operations list
+    And User clicks Calculate
+    Then The answer should say <answer>
+
+    Examples:
+      | first input | second input | answer |
+      | 3           | 0            | 0      |
+      | 3           | 4            | 12     |
+      | -1          | -2           | 2      |
+      | -93         | 0.5          | -46.5  |
+      | 1           | 1            | 1      |
+      | 011         | 003          | 33     |
+      | -1          | 0            | -0     |
+      |             | 2            | ERR    |
+      | 689         |              | ERR    |
+      | one         | 2            | ERR    |
+      | 1           | two          | ERR    |
+
+
+  Scenario Outline: Divide two numbers
+    When User inputs <first input> to first input
+    And User inputs <second input> to second input
+    And User selects divide in operations list
+    And User clicks Calculate
+    Then The answer should say <answer>
+
+    Examples:
+      | first input | second input | answer    |
+      | 12          | 2            | 6         |
+      | 1           | 3            | 0.333333  |
+      | 2           | 3            | 0.666667  |
+      | 5           | 0            | ERR       |
+      | 0           | 123          | 0         |
+      | -1          | 3            | -0.333333 |
+      | 25          | -5           | -5        |
+      |             | 2            | ERR       |
+      | 689         |              | ERR       |
+      | one         | 2            | ERR    |
+      | 1           | two          | ERR    |
