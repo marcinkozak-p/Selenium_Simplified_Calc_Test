@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import taf.Operator;
+import taf.utilities.LogUtils;
+import taf.utilities.Operator;
 
 public class SeleniumSimplifiedCalcPage {
 

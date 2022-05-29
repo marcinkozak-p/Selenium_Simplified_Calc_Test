@@ -9,10 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import taf.Operator;
+import taf.utilities.Operator;
 import taf.pages.SeleniumSimplifiedCalcPage;
 
-public class SeleniumSimplifiedCalculatorUITest {
+public class simplified_calc_step_definitions {
 
     private static WebDriver driver;
     private static SeleniumSimplifiedCalcPage simplifiedCalcPage;
@@ -28,13 +28,11 @@ public class SeleniumSimplifiedCalculatorUITest {
     }
 
     @When("User inputs {} to first input")
-    @Test
     public void input_first_input(String firstInput) {
         simplifiedCalcPage.setInputFirst(firstInput);
     }
 
     @When("User inputs {} to second input")
-    @Test
     public void input_second_input(String secondInput) {
         simplifiedCalcPage.setInputSecond(secondInput);
     }
@@ -50,6 +48,7 @@ public class SeleniumSimplifiedCalculatorUITest {
     }
 
     @Then("The answer should say {}")
+    @Test
     public void the_answer_should_say(String answer) {
         Assert.assertEquals(simplifiedCalcPage.getCalculationResult(), answer);
     }

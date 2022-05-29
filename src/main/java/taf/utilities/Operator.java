@@ -1,6 +1,4 @@
-package taf;
-
-import taf.pages.LogUtils;
+package taf.utilities;
 
 public enum Operator {
     PLUS("plus"),
